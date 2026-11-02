@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Camera Body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,38 L38,30 L70,30 L76,38 L84,38 C86.2,38 88,39.8 88,42 L88,74 C88,76.2 86.2,78 84,78 L24,78 C21.8,78 20,76.2 20,74 L20,42 C20,39.8 21.8,38 24,38 Z" />
+
+    <!-- Lens Outer Ring -->
+    <path
+        android:fillColor="#0F3A5D"
+        android:pathData="M54,42 C44.6,42 37,49.6 37,59 C37,68.4 44.6,76 54,76 C63.4,76 71,68.4 71,59 C71,49.6 63.4,42 54,42 Z" />
+
+    <!-- Lens Inner Circle -->
+    <path
+        android:fillColor="#FFB703"
+        android:pathData="M54,48 C47.9,48 43,52.9 43,59 C43,65.1 47.9,70 54,70 C60.1,70 65,65.1 65,59 C65,52.9 60.1,48 54,48 Z" />
+
+    <!-- Flash / Sensor dot -->
+    <path
+        android:fillColor="#FFB703"
+        android:pathData="M78,44 A3,3 0 1,1 72,44 A3,3 0 1,1 78,44" />
+
+    <!-- Security / Compliance Shield Badge at bottom right -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M66,62 L78,57 L90,62 L90,73 C90,79 78,84 78,84 C78,84 66,79 66,73 Z" />
+
+    <!-- White Checkmark in Shield -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M72,70 L76,74 L84,65" />
+</vector>

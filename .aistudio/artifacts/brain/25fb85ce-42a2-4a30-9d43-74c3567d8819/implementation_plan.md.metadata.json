@@ -1,0 +1,6 @@
+{
+  "summary":  "Rencana implementasi aplikasi Android BOS Cam untuk SMK Negeri 3 Kotamobagu. Mencakup arsitektur native Kotlin Jetpack Compose, pengambilan foto kamera langsung dengan pencegahan unggah galeri, penempelan watermark legalitas BOS berstandar WITA/GPS/SHA-256, penyimpanan offline-first Room dengan antrean sinkronisasi, manajemen peran (Admin, Petugas, Pimpinan), galeri arsip terfilter, serta generator laporan PDF resmi berkop sekolah dan ekspor ZIP.",
+  "updatedAt":  "2026-11-02T11:11:31.404694309Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

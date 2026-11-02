@@ -1,0 +1,38 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isPetugasOrAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'admin' ||
+        request.auth.token.role == 'petugas'
+      );
+    }
+
+    // Penyimpanan foto bukti terstempel watermark BOS SMK Negeri 3 Kotamobagu
+    match /bos_photos/{activityId}/{fileName} {
+      allow read: if isAuthenticated();
+
+      // Hanya izinkan upload gambar resmi berukuran wajar (< 15MB)
+      allow create: if isPetugasOrAdmin() &&
+        request.resource.size < 15 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/.*');
+
+      // Foto bukti dilarang di-overwrite atau disunting setelah terunggah (Immutable Proof)
+      allow update: if false;
+
+      // Hanya Admin yang dapat menghapus berkas
+      allow delete: if isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    // Laporan PDF & ZIP LPJ BOS
+    match /bos_reports/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+  }
+}

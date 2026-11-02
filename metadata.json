@@ -1,0 +1,6 @@
+{
+  "name": "BOS Cam",
+  "description": "Dokumentasi real-time dan pelaporan belanja dana BOS SMK Negeri 3 Kotamobagu dengan watermark legalitas, GPS, WITA, SHA-256, dan ekspor PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

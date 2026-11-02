@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for Role-Based Access Control (RBAC)
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function hasRole(role) {
+      return isAuthenticated() && (
+        (request.auth.token.role == role) ||
+        (getUserData().role == role)
+      );
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    function isPetugas() {
+      return hasRole('petugas') || isAdmin();
+    }
+
+    function isPimpinan() {
+      return hasRole('pimpinan') || isAdmin();
+    }
+
+    // 1. Data Pengguna & Profil Peran
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // 2. Koleksi Kegiatan BOS: Kelola hanya oleh Admin, baca oleh semua peran terdaftar
+    match /bos_activities/{activityId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 3. Koleksi Bukti Dokumentasi Kamera BOS
+    // Dibuat oleh Petugas/Admin; Tidak boleh diedit sembarangan (anti-manipulasi)
+    match /bos_documentations/{docId} {
+      allow read: if isAuthenticated();
+      
+      // Petugas dapat mengunggah bukti jika menyertakan hash SHA-256 dan metadata lokasi
+      allow create: if isPetugas() &&
+        request.resource.data.sha256Hash is string &&
+        request.resource.data.sha256Hash.size() == 64 &&
+        request.resource.data.nomorDokumentasi is string &&
+        request.resource.data.latitude is number &&
+        request.resource.data.longitude is number &&
+        request.resource.data.witaFormattedDate is string;
+
+      // Hanya Admin atau sistem yang dapat memperbarui status sinkronisasi
+      allow update: if isAdmin();
+
+      // Hanya Admin yang dapat menghapus bukti (dengan pencatatan audit log)
+      allow delete: if isAdmin();
+    }
+
+    // 4. Koleksi Audit Log Inspektorat & LPJ
+    match /audit_logs/{logId} {
+      allow read: if isPimpinan() || isAdmin();
+      allow create: if isAuthenticated();
+      allow update, delete: if false; // Immutable audit trail
+    }
+  }
+}

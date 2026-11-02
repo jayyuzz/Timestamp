@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <!-- Outer shield / crest -->
+    <path
+        android:fillColor="#0F3A5D"
+        android:pathData="M48,8 L82,20 C82,56 48,88 48,88 C48,88 14,56 14,20 Z" />
+
+    <!-- Inner gold border -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFB703"
+        android:strokeWidth="3"
+        android:pathData="M48,14 L76,24 C76,54 48,80 48,80 C48,80 20,54 20,24 Z" />
+
+    <!-- Open Book / Education -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,46 C41,41 28,42 28,42 L28,60 C28,60 41,59 48,64 C55,59 68,60 68,60 L68,42 C68,42 55,41 48,46 Z" />
+
+    <!-- Gear / Vocational Tech (SMK) in Center -->
+    <path
+        android:fillColor="#FFB703"
+        android:pathData="M48,26 L51,26 L52,29 L55,30 L57,28 L59,30 L57,33 L58,36 L61,37 L61,40 L58,41 L57,44 L59,47 L57,49 L55,47 L52,48 L51,51 L48,51 L47,48 L44,47 L42,49 L40,47 L42,44 L41,41 L38,40 L38,37 L41,36 L42,33 L40,30 L42,28 L44,30 L47,29 Z" />
+
+    <!-- Center dot of gear -->
+    <path
+        android:fillColor="#0F3A5D"
+        android:pathData="M48,34 A4.5,4.5 0 1,1 48,43 A4.5,4.5 0 1,1 48,34" />
+
+    <!-- Star at top -->
+    <path
+        android:fillColor="#FFB703"
+        android:pathData="M48,17 L49.5,21.5 L54,21.5 L50.5,24 L52,28.5 L48,26 L44,28.5 L45.5,24 L42,21.5 L46.5,21.5 Z" />
+
+    <!-- Ribbon banner at bottom -->
+    <path
+        android:fillColor="#DC2626"
+        android:pathData="M24,72 L48,68 L72,72 L76,80 L48,76 L20,80 Z" />
+
+</vector>
